@@ -41,15 +41,24 @@ public class BlockTypeTest {
         assertThat(subject, isA(BlockType.class));
     }
 
+    @Test(expected=NullPointerException.class)
+    public void beforeRegistrationGetInternalNameThrowsNPE() {
+        BlockType.STONE.getInternalName();
+    }
+
     @Test
     public void afterRegisterFinalStaticAreUpdated() {
         BlockType subject = new BlockType(1) {
-            @Override public String getInternalName() { return null; }
+            @Override
+            public String getInternalName() {
+                return "stone";
+            }
         };
 
         BlockType.register(subject);
 
         assertThat(subject, is(BlockType.get(1)));
         assertThat(BlockType.STONE, is(BlockType.get(1)));
+        assertThat(BlockType.STONE.getInternalName(), is(subject.getInternalName()));
     }
 }
