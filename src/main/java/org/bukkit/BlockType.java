@@ -15,6 +15,7 @@ public abstract class BlockType {
         }
     }
 
+    // Wrapper object so we can 'change' static finals.
     private static class BlockTypeWrapper extends BlockType {
         protected BlockTypeWrapper(int id) {
             super(id);
@@ -40,6 +41,13 @@ public abstract class BlockType {
         }
     }
 
+    // Define constants for ease of use.
+    public static final BlockType STONE = byId[Default.STONE.getId()];
+
+    public static void register(BlockType blockType) {
+        ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
+    }
+
     private final int id;
 
     public BlockType(int id) {
@@ -50,16 +58,11 @@ public abstract class BlockType {
         return byId[id];
     }
 
-    public static void register(BlockType blockType) {
-        ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
-    }
-
-    public static final BlockType STONE = byId[Default.STONE.getId()];
-
     public static BlockType get(Default type) {
         return get(type.getId());
     }
 
+    // Accessors
     public final int getId() {
         return id;
     }
@@ -73,5 +76,4 @@ public abstract class BlockType {
 
         return blockType.getId() == this.getId();
     }
-
 }
