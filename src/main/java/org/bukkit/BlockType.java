@@ -1,6 +1,20 @@
 package org.bukkit;
 
 public abstract class BlockType {
+    public enum Default {
+        STONE(1);
+
+        private int id;
+
+        Default(int id) {
+            this.id = id;
+        }
+
+        public int getId() {
+            return id;
+        }
+    }
+
     private static class BlockTypeWrapper extends BlockType {
         protected BlockTypeWrapper(int id) {
             super(id);
@@ -40,7 +54,7 @@ public abstract class BlockType {
         ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
     }
 
-    public static final BlockType STONE = byId[1];
+    public static final BlockType STONE = byId[Default.STONE.getId()];
 
     public final int getId() {
         return id;

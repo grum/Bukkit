@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertThat;
 
+import org.bukkit.BlockType.Default;
 import org.junit.Test;
 
 public class BlockTypeTest {
@@ -60,5 +61,12 @@ public class BlockTypeTest {
         assertThat(subject, is(BlockType.get(1)));
         assertThat(BlockType.STONE, is(BlockType.get(1)));
         assertThat(BlockType.STONE.getInternalName(), is(subject.getInternalName()));
+    }
+
+    @Test
+    public void enumContainsCorrectData() {
+        BlockType subject = BlockType.get(Default.STONE.getId());
+
+        assertThat(subject, is(BlockType.STONE));
     }
 }
