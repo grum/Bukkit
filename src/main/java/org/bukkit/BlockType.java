@@ -19,8 +19,8 @@ public abstract class BlockType {
         return byId[id];
     }
 
-    public static void register(int id, BlockType blockType) {
-        byId[id] = blockType;
+    public static void register(BlockType blockType) {
+        byId[blockType.getId()] = blockType;
     }
 
     public static final BlockType STONE = byId[1];

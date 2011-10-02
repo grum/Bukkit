@@ -27,7 +27,7 @@ public class BlockTypeTest {
     @Test
     public void registerABlockTypeSucceedsAndReturnsIdenticalObject() {
         BlockType subject = new BlockType(0) {};
-        BlockType.register( 0, subject );
+        BlockType.register( subject );
 
         assertThat(subject, is(BlockType.get(0)));
     }
