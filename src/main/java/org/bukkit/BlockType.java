@@ -16,4 +16,6 @@ public abstract class BlockType {
     public static void register(int id, BlockType blockType) {
         byId[id] = blockType;
     }
+
+    public static final BlockType STONE = new BlockType() {};
 }

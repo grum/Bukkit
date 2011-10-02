@@ -31,4 +31,10 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.get(0)));
     }
+
+    @Test
+    public void staticsContainBlockTypes() {
+        BlockType subject = BlockType.STONE;
+        assertThat(subject, isA(BlockType.class));
+    }
 }
