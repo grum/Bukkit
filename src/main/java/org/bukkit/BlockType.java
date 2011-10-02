@@ -2,7 +2,8 @@ package org.bukkit;
 
 public abstract class BlockType {
     public enum Default {
-        STONE(1);
+        STONE(1),
+        GRASS(2);
 
         private int id;
 
@@ -43,6 +44,7 @@ public abstract class BlockType {
 
     // Define constants for ease of use.
     public static final BlockType STONE = byId[Default.STONE.getId()];
+    public static final BlockType GRASS = byId[Default.GRASS.getId()];
 
     public static void register(BlockType blockType) {
         ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
