@@ -3,10 +3,12 @@ package org.bukkit;
 public abstract class BlockType {
     public enum Default {
         STONE(1),
-        GRASS(2);
+        GRASS(2),
+        CUSTOM;
 
         private int id;
 
+        Default() {}
         Default(int id) {
             this.id = id;
             idToEnum[id] = this;
@@ -72,7 +74,9 @@ public abstract class BlockType {
     }
 
     public Default getType() {
-        return idToEnum[id];
+        Default type = idToEnum[id];
+
+        return type == null ? Default.CUSTOM : type;
     }
 
     public abstract String getInternalName();

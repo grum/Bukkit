@@ -82,4 +82,16 @@ public class BlockTypeTest {
         assertThat(BlockType.STONE.getType(), is(BlockType.Default.STONE));
         assertThat(BlockType.GRASS.getType(), is(BlockType.Default.GRASS));
     }
+
+    @Test
+    public void customTypesReturnDefaultCustom() {
+        assertThat(BlockType.get(255).getType(), is(BlockType.Default.CUSTOM));
+    }
+
+    @Test
+    public void getByCustomReturnsAir() {
+        BlockType subject = BlockType.get(BlockType.Default.CUSTOM);
+
+        assertThat(subject, is(BlockType.get(0)));
+    }
 }
