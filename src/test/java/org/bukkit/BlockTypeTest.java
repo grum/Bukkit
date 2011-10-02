@@ -37,4 +37,14 @@ public class BlockTypeTest {
         BlockType subject = BlockType.STONE;
         assertThat(subject, isA(BlockType.class));
     }
+
+    @Test
+    public void afterRegisterFinalStaticAreUpdated() {
+        BlockType subject = new BlockType(1) {};
+
+        BlockType.register(subject);
+
+        assertThat(subject, is(BlockType.get(1)));
+        assertThat(BlockType.STONE, is(BlockType.get(1)));
+    }
 }

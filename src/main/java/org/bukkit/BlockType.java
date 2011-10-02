@@ -1,11 +1,22 @@
 package org.bukkit;
 
 public abstract class BlockType {
+    private static class BlockTypeWrapper extends BlockType {
+        protected BlockTypeWrapper(int id) {
+            super(id);
+        }
+
+        private BlockType blockType;
+
+        private void setType(BlockType blockType) {
+            this.blockType = blockType;
+        }
+    }
 
     private static BlockType[] byId = new BlockType[256];
     static {
         for (int id = 0; id < byId.length; id++) {
-            byId[id] = new BlockType(id) {};
+            byId[id] = new BlockTypeWrapper(id);
         }
     }
 
@@ -20,7 +31,7 @@ public abstract class BlockType {
     }
 
     public static void register(BlockType blockType) {
-        byId[blockType.getId()] = blockType;
+        ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
     }
 
     public static final BlockType STONE = byId[1];
@@ -28,4 +39,13 @@ public abstract class BlockType {
     public final int getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BlockType)) return false;
+        BlockType blockType = (BlockType) obj;
+
+        return blockType.getId() == this.getId();
+    }
+
 }
