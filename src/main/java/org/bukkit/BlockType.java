@@ -56,6 +56,10 @@ public abstract class BlockType {
 
     public static final BlockType STONE = byId[Default.STONE.getId()];
 
+    public static BlockType get(Default type) {
+        return get(type.getId());
+    }
+
     public final int getId() {
         return id;
     }

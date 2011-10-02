@@ -69,4 +69,11 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.STONE));
     }
+
+    @Test
+    public void getByEnumReturnsCorrectData() {
+        BlockType subject = BlockType.get(Default.STONE);
+
+        assertThat(subject, is(BlockType.STONE));
+    }
 }
