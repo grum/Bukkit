@@ -76,4 +76,10 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.STONE));
     }
+
+    @Test
+    public void eachBlockTypeKnowsItsEnumType() {
+        assertThat(BlockType.STONE.getType(), is(BlockType.Default.STONE));
+        assertThat(BlockType.GRASS.getType(), is(BlockType.Default.GRASS));
+    }
 }

@@ -9,6 +9,7 @@ public abstract class BlockType {
 
         Default(int id) {
             this.id = id;
+            idToEnum[id] = this;
         }
 
         public int getId() {
@@ -35,6 +36,7 @@ public abstract class BlockType {
     }
 
     // Container + Init
+    private static final Default[] idToEnum = new Default[256];
     private static final BlockType[] byId = new BlockType[256];
     static {
         for (int id = 0; id < byId.length; id++) {
@@ -67,6 +69,10 @@ public abstract class BlockType {
     // Accessors
     public final int getId() {
         return id;
+    }
+
+    public Default getType() {
+        return idToEnum[id];
     }
 
     public abstract String getInternalName();
