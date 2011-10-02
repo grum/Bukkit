@@ -12,4 +12,14 @@ public class BlockTypeTest {
 
         assertThat(subject, isA(BlockType.class));
     }
+
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void minusOneFails() {
+        BlockType.get(-1);
+    }
+
+    @Test(expected=IndexOutOfBoundsException.class)
+    public void overTwoHundredAndFiftyFiveFails() {
+        BlockType.get(256);
+    }
 }
