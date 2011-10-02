@@ -26,8 +26,11 @@ public class BlockTypeTest {
 
     @Test
     public void registerABlockTypeSucceedsAndReturnsIdenticalObject() {
-        BlockType subject = new BlockType(0) {};
-        BlockType.register( subject );
+        BlockType subject = new BlockType(0) {
+            @Override public String getInternalName() { return null; }
+        };
+
+        BlockType.register(subject);
 
         assertThat(subject, is(BlockType.get(0)));
     }
@@ -40,7 +43,9 @@ public class BlockTypeTest {
 
     @Test
     public void afterRegisterFinalStaticAreUpdated() {
-        BlockType subject = new BlockType(1) {};
+        BlockType subject = new BlockType(1) {
+            @Override public String getInternalName() { return null; }
+        };
 
         BlockType.register(subject);
 

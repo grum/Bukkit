@@ -11,6 +11,11 @@ public abstract class BlockType {
         private void setType(BlockType blockType) {
             this.blockType = blockType;
         }
+
+        @Override
+        public String getInternalName() {
+            return blockType.getInternalName();
+        }
     }
 
     private static BlockType[] byId = new BlockType[256];
@@ -39,6 +44,8 @@ public abstract class BlockType {
     public final int getId() {
         return id;
     }
+
+    public abstract String getInternalName();
 
     @Override
     public boolean equals(Object obj) {
