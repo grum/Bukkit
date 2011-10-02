@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertThat;
 
@@ -14,12 +15,20 @@ public class BlockTypeTest {
     }
 
     @Test(expected=IndexOutOfBoundsException.class)
-    public void minusOneFails() {
+    public void getMinusOneFails() {
         BlockType.get(-1);
     }
 
     @Test(expected=IndexOutOfBoundsException.class)
-    public void overTwoHundredAndFiftyFiveFails() {
+    public void getOverTwoHundredAndFiftyFiveFails() {
         BlockType.get(256);
+    }
+
+    @Test
+    public void registerABlockTypeSucceedsAndReturnsIdenticalObject() {
+        BlockType subject = new BlockType() {};
+        BlockType.register( 0, subject );
+
+        assertThat(subject, is(BlockType.get(0)));
     }
 }
