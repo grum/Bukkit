@@ -76,6 +76,9 @@ public abstract class BlockType {
     }
 
     public static BlockType get(int id) {
+        if (id < 0 || id > 255) {
+            throw new IllegalArgumentException();
+        }
         return byId[id];
     }
 

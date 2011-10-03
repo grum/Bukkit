@@ -15,12 +15,12 @@ public class BlockTypeTest {
         assertThat(subject, isA(BlockType.class));
     }
 
-    @Test(expected=IndexOutOfBoundsException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void getMinusOneFails() {
         BlockType.get(-1);
     }
 
-    @Test(expected=IndexOutOfBoundsException.class)
+    @Test(expected=IllegalArgumentException.class)
     public void getOverTwoHundredAndFiftyFiveFails() {
         BlockType.get(256);
     }
