@@ -101,4 +101,11 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.STONE));
     }
+
+    @Test
+    public void getByNameForUnknownAliasesWorks() {
+        BlockType subject = BlockType.get("FOOBAR");
+
+        assertThat(subject, is(BlockType.get(0)));
+    }
 }

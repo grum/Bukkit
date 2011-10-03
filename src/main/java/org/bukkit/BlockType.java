@@ -80,7 +80,8 @@ public abstract class BlockType {
     }
 
     public static BlockType get(String name) {
-        return get(byName.get(name));
+        Integer id = byName.get(name);
+        return get(id == null ? 0 : id);
     }
 
     // Accessors
