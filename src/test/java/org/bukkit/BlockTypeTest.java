@@ -39,6 +39,7 @@ public class BlockTypeTest {
     @Test
     public void staticsContainBlockTypes() {
         BlockType subject = BlockType.STONE;
+
         assertThat(subject, isA(BlockType.class));
     }
 
@@ -85,7 +86,9 @@ public class BlockTypeTest {
 
     @Test
     public void customTypesReturnDefaultCustom() {
-        assertThat(BlockType.get(255).getType(), is(BlockType.Default.CUSTOM));
+        Default subject = BlockType.get(255).getType();
+
+        assertThat(subject, is(BlockType.Default.CUSTOM));
     }
 
     @Test
@@ -124,4 +127,5 @@ public class BlockTypeTest {
         assertThat(BlockType.get("Rock"), is(BlockType.STONE));
         assertThat(BlockType.get("Hard Stuffs"), is(BlockType.STONE));
     }
+
 }
