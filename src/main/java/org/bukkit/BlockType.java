@@ -61,7 +61,7 @@ public abstract class BlockType {
 
     private static void addAlias(Integer typeIndex, String... aliases) {
         for (String alias : aliases) {
-            byName.put(alias, typeIndex);
+            byName.put(alias.toLowerCase(), typeIndex);
         }
     }
 
@@ -80,7 +80,7 @@ public abstract class BlockType {
     }
 
     public static BlockType get(String name) {
-        Integer id = byName.get(name);
+        Integer id = byName.get(name.toLowerCase());
         return get(id == null ? 0 : id);
     }
 

@@ -108,4 +108,11 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.get(0)));
     }
+
+    @Test
+    public void aliasesShouldBeCaseInsensitive() {
+        BlockType subject = BlockType.get("stOnE");
+
+        assertThat(subject, is(BlockType.get("STONE")));
+    }
 }
