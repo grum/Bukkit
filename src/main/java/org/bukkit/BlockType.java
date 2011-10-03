@@ -42,9 +42,10 @@ public abstract class BlockType {
     }
 
     // Container + Init
-    private static final Default[] idToEnum = new Default[256];
+    private static final int MAX = 256;
+    private static final Default[] idToEnum = new Default[MAX];
     private static final Map<String, Integer> byName = new HashMap<String, Integer>();
-    private static final BlockType[] byId = new BlockType[256];
+    private static final BlockType[] byId = new BlockType[MAX];
     static {
         for (int id = 0; id < byId.length; id++) {
             byId[id] = new Wrapper(id);
@@ -76,7 +77,7 @@ public abstract class BlockType {
     }
 
     public static BlockType get(int id) {
-        if (id < 0 || id > 255) {
+        if (id < 0 || id >= MAX) {
             throw new IllegalArgumentException();
         }
         return byId[id];
