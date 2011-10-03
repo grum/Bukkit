@@ -115,4 +115,13 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.get("STONE")));
     }
+
+    @Test
+    public void addingMultipleAliasesWorks() {
+        BlockType.STONE.addAlias("Brick", "Rock", "Hard Stuffs");
+
+        assertThat(BlockType.get("Brick"), is(BlockType.STONE));
+        assertThat(BlockType.get("Rock"), is(BlockType.STONE));
+        assertThat(BlockType.get("Hard Stuffs"), is(BlockType.STONE));
+    }
 }

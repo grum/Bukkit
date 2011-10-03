@@ -65,6 +65,10 @@ public abstract class BlockType {
         }
     }
 
+    public void addAlias(String... aliases) {
+        addAlias(this.getId(), aliases);
+    }
+
     private final int id;
 
     public BlockType(int id) {
