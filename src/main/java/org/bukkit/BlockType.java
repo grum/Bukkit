@@ -24,20 +24,20 @@ public abstract class BlockType {
     }
 
     // Wrapper object so we can 'change' static finals.
-    private static class BlockTypeWrapper extends BlockType {
-        protected BlockTypeWrapper(int id) {
+    private static class Wrapper extends BlockType {
+        protected Wrapper(int id) {
             super(id);
         }
 
-        private BlockType blockType;
+        private BlockType type;
 
-        private void setType(BlockType blockType) {
-            this.blockType = blockType;
+        private void setType(BlockType type) {
+            this.type = type;
         }
 
         @Override
         public String getInternalName() {
-            return blockType.getInternalName();
+            return type.getInternalName();
         }
     }
 
@@ -47,7 +47,7 @@ public abstract class BlockType {
     private static final BlockType[] byId = new BlockType[256];
     static {
         for (int id = 0; id < byId.length; id++) {
-            byId[id] = new BlockTypeWrapper(id);
+            byId[id] = new Wrapper(id);
         }
     }
 
@@ -55,8 +55,8 @@ public abstract class BlockType {
     public static final BlockType STONE = byId[Default.STONE.getId()];
     public static final BlockType GRASS = byId[Default.GRASS.getId()];
 
-    public static void register(BlockType blockType) {
-        ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
+    public static void register(BlockType type) {
+        ((Wrapper) byId[type.getId()]).setType(type);
     }
 
     private static void addAlias(int typeIndex, String... aliases) {
@@ -106,10 +106,12 @@ public abstract class BlockType {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof BlockType)) return false;
-        BlockType blockType = (BlockType) obj;
+        if (!(obj instanceof BlockType)) {
+            return false;
+        }
+        BlockType type = (BlockType) obj;
 
-        return blockType.getId() == this.getId();
+        return type.getId() == this.getId();
     }
 
     @Override
