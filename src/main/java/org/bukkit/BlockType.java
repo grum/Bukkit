@@ -1,5 +1,8 @@
 package org.bukkit;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class BlockType {
     public enum Default {
         STONE(1),
@@ -12,6 +15,7 @@ public abstract class BlockType {
         Default(int id) {
             this.id = id;
             idToEnum[id] = this;
+            addAlias(id, this.toString());
         }
 
         public int getId() {
@@ -39,6 +43,7 @@ public abstract class BlockType {
 
     // Container + Init
     private static final Default[] idToEnum = new Default[256];
+    private static final Map<String, Integer> byName = new HashMap<String, Integer>();
     private static final BlockType[] byId = new BlockType[256];
     static {
         for (int id = 0; id < byId.length; id++) {
@@ -54,6 +59,12 @@ public abstract class BlockType {
         ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
     }
 
+    private static void addAlias(Integer typeIndex, String... aliases) {
+        for (String alias : aliases) {
+            byName.put(alias, typeIndex);
+        }
+    }
+
     private final int id;
 
     public BlockType(int id) {
@@ -66,6 +77,10 @@ public abstract class BlockType {
 
     public static BlockType get(Default type) {
         return get(type.getId());
+    }
+
+    public static BlockType get(String name) {
+        return get(byName.get(name));
     }
 
     // Accessors

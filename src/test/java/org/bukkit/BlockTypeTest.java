@@ -94,4 +94,11 @@ public class BlockTypeTest {
 
         assertThat(subject, is(BlockType.get(0)));
     }
+
+    @Test
+    public void getByNameForStoneWorks() {
+        BlockType subject = BlockType.get("STONE");
+
+        assertThat(subject, is(BlockType.STONE));
+    }
 }
