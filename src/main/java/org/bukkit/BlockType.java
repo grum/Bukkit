@@ -59,7 +59,7 @@ public abstract class BlockType {
         ((BlockTypeWrapper) byId[blockType.getId()]).setType(blockType);
     }
 
-    private static void addAlias(Integer typeIndex, String... aliases) {
+    private static void addAlias(int typeIndex, String... aliases) {
         for (String alias : aliases) {
             byName.put(alias.toLowerCase(), typeIndex);
         }
