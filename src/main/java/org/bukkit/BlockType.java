@@ -103,4 +103,9 @@ public abstract class BlockType {
 
         return blockType.getId() == this.getId();
     }
+
+    @Override
+    public String toString() {
+        return String.format("BlockType.%s, id: %d", this.getType(), this.getId());
+    }
 }
